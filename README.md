@@ -3,17 +3,19 @@
 
 ## **USAGE**:
 
+- clone or install this repository for usage
 ```bash
 git clone https://github.com/Artyahai/cv-image-processor
 ```
-- clone or install this repository for usage
+
+- install requirement libraries and modules 
 ```bash
 pip install -r requirements.txt
 ```
-- install requirement libraries and modules 
 
-Paste your image in this directory
+
+**Paste your image in this directory**
+- Script for usage
 ```bash
 python run.py
 ```
-Script for usage
