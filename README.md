@@ -4,7 +4,7 @@
 ## **USAGE**:
 
 ```bash
-git clone 
+git clone https://github.com/Artyahai/cv-image-processor
 ```
 - clone or install this repository for usage
 ```bash
