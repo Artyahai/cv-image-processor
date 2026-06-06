@@ -1,6 +1,5 @@
 import cv2 
 import numpy as np 
-from image_finder import find_image_files
 # creates class where we contain function for every tool(for usability and code readability)
 
 class BasicImageProcessor():
@@ -15,15 +14,24 @@ class BasicImageProcessor():
             cv2.imshow("Greyscale",gray)
             cv2.waitKey(0)
             cv2.destroyAllWindows()
-    def blur(self):
+    def blur(self, gaussian = True, blur_level = "middle"):
+        if blur_level == "middle":
+            blur = (5,5)
+        elif blur_level == "weak":
+            blur = (10,10)
+        elif blur_level == "strong":
+            blur = (15,15)
+        elif blur_level == "strongest":
+            blur = (31,31)
         for f in self.images:
             img = cv2.imread(f)
-            blur = cv2.blur(img, (5,5))
-            cv2.imshow("Blur", blur)
+            if gaussian == True:
+                blurred_img = cv2.GaussianBlur(img, blur, 0)
+            elif gaussian == False: 
+                blurred_img = cv2.blur(img, blur)
+            cv2.imshow("Blur", blurred_img)
             cv2.waitKey(0)
-    def rotate_image(self, angle, clockwise = True): 
-        if angle != 180 or 90:
-             raise ValueError("angle must be 180 or 90")
+    def rotate_image(self, angle, clockwise = True):
         for f in self.images:
              img = cv2.imread(f)
              if angle == 180:
@@ -37,6 +45,7 @@ class BasicImageProcessor():
              elif clockwise == True and angle == 90:
                  rotated = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
                  cv2.imshow("90 degrees rotated clockwise",rotated)
-    
-
+                 cv2.waitKey(0)
+             else:
+                 raise ValueError("angle must be 180 or 90")
             
