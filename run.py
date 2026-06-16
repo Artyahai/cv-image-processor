@@ -1,6 +1,6 @@
 import cv2
 from image_finder import find_image_files
-from model import BasicImageProcessor
+from algorithms import BasicImageProcessor
 
 
 while True:

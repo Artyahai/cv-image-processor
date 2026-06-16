@@ -48,4 +48,15 @@ class BasicImageProcessor():
                  cv2.waitKey(0)
              else:
                  raise ValueError("angle must be 180 or 90")
-            
+   
+   
+    def affine_tranformation(self):
+        for f in self.images:
+            width, height = f[:2]
+            src_points = np.float32([[0,0], [width-1, 0], [0, height-1]])
+            dst_points = np.float32([[width * 0.2, height * 0.1], [width * 0.8, height * 0.2], [width * 0.1, height * 0.9]])
+            affine_matrix = cv2.getAffineTransform(src_points, dst_points)
+            transformed = cv2.warpAffine(f, affine_matrix, (width, height))
+
+            cv2.imshow("Affine transformation", transformed)
+            cv2.waitKey(0)
