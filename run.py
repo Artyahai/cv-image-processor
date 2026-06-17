@@ -9,7 +9,8 @@ while True:
           1 - exit,
           2 - grayscale image,
           3 - blur image,
-          4 - image rotation
+          4 - image rotation,
+          5 - Affine transformation
           ''')
     
     num = int(input('Upload photo to this directory and Select tool that you want to use: '))
@@ -68,7 +69,11 @@ while True:
 
         elif second_choice == 2:
             second_choice = False
-
-        else:
-            raise ValueError("please enter only available numbers")
         images.rotate_image(angle=choice, clockwise=second_choice)
+        
+    elif num == 5:
+        images.affine_tranformation()
+
+    else:
+        raise ValueError("please enter only available numbers")
+        

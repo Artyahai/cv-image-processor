@@ -52,11 +52,13 @@ class BasicImageProcessor():
    
     def affine_tranformation(self):
         for f in self.images:
-            width, height = f[:2]
+            img = cv2.imread(f)
+            width, height = img.shape[:2]
+            width, height = int(width), int(height)
             src_points = np.float32([[0,0], [width-1, 0], [0, height-1]])
             dst_points = np.float32([[width * 0.2, height * 0.1], [width * 0.8, height * 0.2], [width * 0.1, height * 0.9]])
             affine_matrix = cv2.getAffineTransform(src_points, dst_points)
-            transformed = cv2.warpAffine(f, affine_matrix, (width, height))
+            transformed = cv2.warpAffine(img, affine_matrix, (width, height))
 
             cv2.imshow("Affine transformation", transformed)
             cv2.waitKey(0)
